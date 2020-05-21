@@ -1,0 +1,8 @@
+<resources>
+    <string name="thumber_continue">Devam Et</string>
+    <string name="select_video">Video Seçiniz</string>
+    <string name="camera_permission_denied">Kamera erişimine zin verilmelidir!</string>
+    <string name="file_permission_denied">Dosya erişimine zin verilmelidir!</string>
+    <string name="choose_item">Thumbnail Seçiniz</string>
+    <string name="error_video_from">Video seçim biçimi hatalı.0 ya da 1 olabilir</string>
+</resources>

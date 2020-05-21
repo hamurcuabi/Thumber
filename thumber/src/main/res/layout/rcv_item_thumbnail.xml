@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:thumber="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="thumbnail"
+            type="com.emrhmrc.thumber.model.ThumbnailModel" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/frame_root"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:gravity="center">
+
+
+        <ImageView
+            android:id="@+id/img_thmubnail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            thumber:loadBitmap="@{thumbnail.bitmap}" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/thumb_color"
+            android:visibility="@{thumbnail.isSelected()?View.GONE:View.VISIBLE}" />
+
+
+    </FrameLayout>
+</layout>
