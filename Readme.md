@@ -27,9 +27,22 @@ dependencies {
 	 
 }
 ```
+``` Add this to your module's `build.gradle` into android tags
 
-## Configuration
+```   viewBinding {
+        enabled = true
+    }
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 ```
+## Configuration
+
 1-Choose type of video . You can chag the number of thumbnail will display and time of video
 
    private void fromCapture() {
