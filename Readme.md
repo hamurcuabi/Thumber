@@ -83,5 +83,5 @@ Add this to your module's `build.gradle` into android tags
  ```
     
    ## Thumbnail picker UI
-![Screenshot (22 May 2020 16_02_48)](https://user-images.githubusercontent.com/23655824/82671096-ef9e6380-9c46-11ea-88e7-79a43661f182.png  width="200" height="400")
+![Screenshot (22 May 2020 16_02_48)](https://user-images.githubusercontent.com/23655824/82671096-ef9e6380-9c46-11ea-88e7-79a43661f182.png  =250x500)
 
