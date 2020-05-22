@@ -32,6 +32,12 @@ public class ThumberHelper {
         return thumbnailModelList;
     }
 
+    public static Bitmap getThumber(Context context, Uri videoUri, int duration) {
+        MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
+        mediaMetadataRetriever.setDataSource(context, videoUri);
+        return mediaMetadataRetriever.getFrameAtTime(duration, MediaMetadataRetriever.OPTION_CLOSEST_SYNC);
+    }
+
     public static long getLongDuration(Context context, Uri videoUri) {
         MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
         mediaMetadataRetriever.setDataSource(context, videoUri);

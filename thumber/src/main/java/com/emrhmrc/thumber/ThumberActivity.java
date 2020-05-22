@@ -37,6 +37,8 @@ public class ThumberActivity extends AppCompatActivity implements IOnItemClickLi
     private VideoFrom videoFrom;
     private int thumberCount;
     private Bitmap selectedBitmap = null;
+    private int oldPosition = -1;
+    private int currentDuration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +58,7 @@ public class ThumberActivity extends AppCompatActivity implements IOnItemClickLi
         binding.btnContinue.setOnClickListener(view -> {
             if (selectedBitmap != null) {
                 Intent returnIntent = new Intent();
-               /* returnIntent.putExtra(ThumberData.SelectedImage.name(),
-                        ImageHelper.bitmapToByteArray(selectedBitmap));*/
+                returnIntent.putExtra(ThumberData.ThumbnailDuration.name(), currentDuration);
                 returnIntent.putExtra(ThumberData.VideoUri.name(), videoUri.toString());
                 setResult(Activity.RESULT_OK, returnIntent);
                 finish();
@@ -66,10 +67,11 @@ public class ThumberActivity extends AppCompatActivity implements IOnItemClickLi
             }
 
         });
-        binding.imgBack.setOnClickListener(view -> {
+        binding.btnCancel.setOnClickListener(view -> {
             cancelProcess();
         });
         binding.imgPlay.setOnClickListener(view -> setPlayState());
+        binding.lnrVideoContainer.setOnClickListener(view -> setPlayState());
     }
 
     private void prepareRecylerView() {
@@ -97,9 +99,12 @@ public class ThumberActivity extends AppCompatActivity implements IOnItemClickLi
             binding.imgPlay.setVisibility(View.VISIBLE);
             binding.videoview.pause();
             return;
+        } else {
+            binding.imgPlay.setVisibility(View.GONE);
+            binding.videoview.start();
+            binding.videoview.seekTo(currentDuration);
         }
-        binding.imgPlay.setVisibility(View.GONE);
-        binding.videoview.start();
+
     }
 
     private void videoCapture() {
@@ -170,20 +175,29 @@ public class ThumberActivity extends AppCompatActivity implements IOnItemClickLi
 
     @Override
     public void onItemClicked(ThumbnailModel item, int positon) {
-        binding.videoview.seekTo((int) item.getDuration());
-        binding.imgPlay.setVisibility(View.VISIBLE);
-        binding.videoview.pause();
-        for (int i = 0; i < thumberAdapter.getItems().size(); i++) {
-            if (i != positon) {
-                thumberAdapter.getItem(i).setSelected(false);
-
+        if (oldPosition == -1) {
+            oldPosition = positon;
+            thumberAdapter.getItem(oldPosition).setSelected(true);
+            thumberAdapter.updateItem(thumberAdapter.getItem(oldPosition), oldPosition);
+        } else {
+            if (oldPosition == positon) {
+                thumberAdapter.getItem(positon).setSelected(true);
+                thumberAdapter.updateItem(thumberAdapter.getItem(positon), positon);
             } else {
-                thumberAdapter.getItem(i).setSelected(true);
-                selectedBitmap = thumberAdapter.getItem(i).getBitmap();
+                thumberAdapter.getItem(oldPosition).setSelected(false);
+                thumberAdapter.updateItem(thumberAdapter.getItem(oldPosition), oldPosition);
+
+                thumberAdapter.getItem(positon).setSelected(true);
+                thumberAdapter.updateItem(thumberAdapter.getItem(positon), positon);
+
+                oldPosition = positon;
             }
 
         }
-        thumberAdapter.notifyDataSetChanged();
+        selectedBitmap = thumberAdapter.getItem(positon).getBitmap();
+        currentDuration = (int) item.getDuration();
+        setPlayState();
+
     }
 
     @Override

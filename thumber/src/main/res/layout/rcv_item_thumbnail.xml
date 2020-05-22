@@ -11,25 +11,37 @@
             type="com.emrhmrc.thumber.model.ThumbnailModel" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/frame_root"
         android:layout_width="72dp"
         android:layout_height="72dp"
-        android:gravity="center">
+        android:layout_margin="2dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/img_thmubnail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            thumber:loadBitmap="@{thumbnail.bitmap}" />
+            <ImageView
+                android:id="@+id/img_thmubnail"
+                android:layout_width="72dp"
+                android:layout_height="wrap_content"
+                thumber:loadBitmap="@{thumbnail.bitmap}" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/thumb_color"
+                android:visibility="@{thumbnail.isSelected()?View.GONE:View.VISIBLE}" />
+        </FrameLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/thumb_color"
-            android:visibility="@{thumbnail.isSelected()?View.GONE:View.VISIBLE}" />
-
-
-    </FrameLayout>
+            android:layout_height="4dp"
+            android:layout_marginTop="1dp"
+            android:alpha="0.3"
+            android:background="@color/design_default_color_primary"
+            android:visibility="@{thumbnail.isSelected()?View.VISIBLE:View.GONE}" />
+    </LinearLayout>
 </layout>

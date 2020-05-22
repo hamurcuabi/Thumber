@@ -19,7 +19,8 @@
             android:layout_weight="1">
 
 
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/lnr_video_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -28,9 +29,13 @@
                 <VideoView
                     android:id="@+id/videoview"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
                     android:layout_gravity="center" />
-            </LinearLayout>
+            </RelativeLayout>
 
 
             <ImageView
@@ -39,13 +44,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_play" />
-
-            <ImageView
-                android:id="@+id/img_back"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="20dp"
-                android:src="@drawable/ic_arrow_back" />
 
         </FrameLayout>
 
@@ -63,18 +61,30 @@
                 android:orientation="horizontal" />
         </LinearLayout>
 
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_continue"
-            style="@style/MaterialBottomPrimary"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="32dp"
-            android:enabled="false"
-            android:text="@string/thumber_continue" />
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_continue"
+                style="@style/MaterialBottomPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:text="@string/thumber_continue" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_cancel"
+                style="@style/MaterialBottomPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/design_default_color_error"
+                android:text="@string/thumber_cancel" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 </layout>
