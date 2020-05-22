@@ -45,7 +45,7 @@ public class ThumberHelper {
         return videoLength;
     }
 
-    public static long getIntDuration(Context context, Uri videoUri) {
+    public static int getIntDuration(Context context, Uri videoUri) {
         MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
         mediaMetadataRetriever.setDataSource(context, videoUri);
         int videoLength = (Integer.parseInt(mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)));

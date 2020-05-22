@@ -150,7 +150,7 @@ public class ThumberActivity extends AppCompatActivity implements IOnItemClickLi
                 videoPath = ImageHelper.getRealPathFromURI(this, videoUri);
                 binding.videoview.setVideoPath(videoPath);
                 thumberAdapter.setItems(ThumberHelper.getThumberList(this, videoUri, thumberCount));
-                setPlayState();
+                checkVideoTime();
 
             } else if (requestCode == THUMBER_PICK_VIDEO) {
                 assert data != null;
@@ -159,10 +159,20 @@ public class ThumberActivity extends AppCompatActivity implements IOnItemClickLi
                 videoPath = ImageHelper.getRealPathFromURI(this, videoUri);
                 binding.videoview.setVideoPath(videoPath);
                 thumberAdapter.setItems(ThumberHelper.getThumberList(this, videoUri, thumberCount));
-                setPlayState();
+                checkVideoTime();
             }
 
         } else {
+            cancelProcess();
+        }
+    }
+
+    private void checkVideoTime() {
+        int videoDuration = ThumberHelper.getIntDuration(this, videoUri);
+        if (duration >= videoDuration) {
+            setPlayState();
+        } else {
+            Toast.makeText(this, getString(R.string.error_duration), Toast.LENGTH_LONG).show();
             cancelProcess();
         }
     }

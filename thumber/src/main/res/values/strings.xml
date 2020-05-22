@@ -6,5 +6,6 @@
     <string name="file_permission_denied">Dosya erişimine zin verilmelidir!</string>
     <string name="choose_item">Thumbnail Seçiniz</string>
     <string name="error_video_from">Video seçim biçimi hatalı.0 ya da 1 olabilir</string>
+    <string name="error_duration">Video süresi talep edilende süreden fazla olamaz!</string>
 
 </resources>

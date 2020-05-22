@@ -2,6 +2,7 @@ package com.emrhmrc.thumberapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 Uri uri = Uri.parse(data.getStringExtra(ThumberData.VideoUri.name()));
                 int duration = data.getIntExtra(ThumberData.ThumbnailDuration.name(), 0);
                 //ThumberHelper ile thumbanil alabiliriz
+                Bitmap bitmap = ThumberHelper.getThumber(this, uri, duration);
                 binding.imgThmubnail.setImageBitmap(ThumberHelper.getThumber(this, uri, duration));
             }
             if (resultCode == Activity.RESULT_CANCELED) {
