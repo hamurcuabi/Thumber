@@ -1,6 +1,6 @@
 # Thumber 
 					
-Best thumbnail picker Thumber :camera:
+Best thumbnail picker :point_right: Thumber 
 
 ![thumber](https://user-images.githubusercontent.com/23655824/82667359-64ba6a80-9c40-11ea-9f8f-b0060c8390fd.png)
 ## Prerequisites
@@ -83,5 +83,5 @@ Add this to your module's `build.gradle` into android tags
  ```
     
    ## Thumbnail picker UI
-    ![Screenshot (22 May 2020 16_02_48)](https://user-images.githubusercontent.com/23655824/82671096-ef9e6380-9c46-11ea-88e7-79a43661f182.png)
+![Screenshot (22 May 2020 16_02_48)](https://user-images.githubusercontent.com/23655824/82671096-ef9e6380-9c46-11ea-88e7-79a43661f182.png  | width=200)
 
