@@ -80,8 +80,7 @@ Add this to your module's `build.gradle` into android tags
             }
         }
     }
+ ```
     
-    ## Thumbnail picker UI
-    
-  
-![Screenshot (22 May 2020 16_02_48)](https://user-images.githubusercontent.com/23655824/82670865-9d5d4280-9c46-11ea-9d82-c2f029bbee47.png)
+   ## Thumbnail picker UI
+    ![Thumber](https://user-images.githubusercontent.com/23655824/82670865-9d5d4280-9c46-11ea-9d82-c2f029bbee47.png)
