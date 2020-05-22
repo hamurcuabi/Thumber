@@ -27,7 +27,7 @@ dependencies {
 	 
 }
 ```
-``` Add this to your module's `build.gradle` into android tags
+Add this to your module's `build.gradle` into android tags
 
 ```   viewBinding {
         enabled = true
