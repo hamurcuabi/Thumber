@@ -45,6 +45,7 @@ Add this to your module's `build.gradle` into android tags
 
 1-Choose type of video . You can chag the number of thumbnail will display and time of video
 
+```
    private void fromCapture() {
         Intent i = new Intent(this, ThumberActivity.class);
         i.putExtra(ThumberData.ThumberCount.name(), 5);
@@ -52,8 +53,7 @@ Add this to your module's `build.gradle` into android tags
         i.putExtra(ThumberData.VideoFrom.name(), VideoFrom.CAPTURE);
         startActivityForResult(i, ThumberActivity.THUMBER_ACTIVTY);
     }
-```
-
+   
   private void fromGallery() {
         Intent i = new Intent(this, ThumberActivity.class);
         i.putExtra(ThumberData.ThumberCount.name(), 5);
