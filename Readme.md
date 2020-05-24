@@ -23,7 +23,7 @@ Add this to your module's `build.gradle` file (make sure the version matches the
 ```gradle
 dependencies {
 	...
-	 implementation 'com.github.hamurcuabi:Thumber:1.1.0'
+	 implementation 'com.github.hamurcuabi:Thumber:v1.2.1'
 	 
 }
 ```
