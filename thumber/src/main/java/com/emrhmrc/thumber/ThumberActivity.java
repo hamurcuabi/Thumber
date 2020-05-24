@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -23,6 +24,9 @@ import com.emrhmrc.thumber.databinding.ActivityThumberBinding;
 import com.emrhmrc.thumber.model.ThumbnailModel;
 import com.emrhmrc.thumber.util.ImageHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ThumberActivity extends AppCompatActivity implements IOnItemClickListener<ThumbnailModel> {
     public static final int THUMBER_ACTIVTY = 1010;
     public static final int THUMBER_PICK_VIDEO = 8080;
@@ -30,6 +34,7 @@ public class ThumberActivity extends AppCompatActivity implements IOnItemClickLi
     public static final int THUMBER_WRITE_EXTERNAL_PERMISSION = 7070;
     public static final int THUMBER_CAMERA_PERMISSION = 6060;
     public int duration;
+    private List<ThumbnailModel> thumbnailModelList = new ArrayList<>();
     private Uri videoUri;
     private String videoPath;
     private ActivityThumberBinding binding;
@@ -146,19 +151,15 @@ public class ThumberActivity extends AppCompatActivity implements IOnItemClickLi
             if (requestCode == THUMBER_CAPTURE_VIDEO) {
                 assert data != null;
                 videoUri = data.getData();
-                binding.btnContinue.setEnabled(true);
                 videoPath = ImageHelper.getRealPathFromURI(this, videoUri);
                 binding.videoview.setVideoPath(videoPath);
-                thumberAdapter.setItems(ThumberHelper.getThumberList(this, videoUri, thumberCount));
                 checkVideoTime();
 
             } else if (requestCode == THUMBER_PICK_VIDEO) {
                 assert data != null;
                 videoUri = data.getData();
-                binding.btnContinue.setEnabled(true);
                 videoPath = ImageHelper.getRealPathFromURI(this, videoUri);
                 binding.videoview.setVideoPath(videoPath);
-                thumberAdapter.setItems(ThumberHelper.getThumberList(this, videoUri, thumberCount));
                 checkVideoTime();
             }
 
@@ -170,6 +171,7 @@ public class ThumberActivity extends AppCompatActivity implements IOnItemClickLi
     private void checkVideoTime() {
         int videoDuration = ThumberHelper.getIntDuration(this, videoUri);
         if (duration >= videoDuration) {
+            new LoadThumbnails().execute();
             setPlayState();
         } else {
             Toast.makeText(this, getString(R.string.error_duration), Toast.LENGTH_LONG).show();
@@ -232,6 +234,31 @@ public class ThumberActivity extends AppCompatActivity implements IOnItemClickLi
                 return;
             }
 
+        }
+    }
+
+    class LoadThumbnails extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            binding.shimmerContainer.startShimmerAnimation();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            thumbnailModelList = ThumberHelper.getThumberList(ThumberActivity.this, videoUri,
+                    thumberCount);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            binding.shimmerContainer.stopShimmerAnimation();
+            binding.rcvThumbnails.setVisibility(View.VISIBLE);
+            binding.shimmerContainer.setVisibility(View.GONE);
+            thumberAdapter.setItems(thumbnailModelList);
+            binding.btnContinue.setEnabled(true);
         }
     }
 }
