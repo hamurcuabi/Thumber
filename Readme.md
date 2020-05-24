@@ -1,6 +1,8 @@
 # Thumber 
 					
-Best thumbnail picker :point_right: Thumber 
+Best thumbnail picker :point_right:Thumber 
+
+[![](https://jitpack.io/v/hamurcuabi/Thumber.svg)](https://jitpack.io/#hamurcuabi/Thumber)
 
 ![thumber](https://user-images.githubusercontent.com/23655824/82667359-64ba6a80-9c40-11ea-9f8f-b0060c8390fd.png)
 ## Prerequisites
